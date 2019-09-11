@@ -1,0 +1,10 @@
+@startuml
+
+hide empty description
+[*] --> añadirCospel
+añadirCospel --> nuevaOrden
+nuevaOrden --> procesarOrden
+procesarOrden --> darVuelto
+darVuelto --> [*]
+
+@enduml

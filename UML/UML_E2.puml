@@ -1,0 +1,80 @@
+@startuml
+    skinparam backgroundColor #FAFAFA
+
+    class SistemaAereo {
+        SistemaMedición sistemaMedición
+        UAV uav
+    }
+    class SistemaMedición {
+        Sensor[] sensores
+    }
+    class UAV {
+        string tipo
+        int autonomia
+        int alturaMax
+        string estado
+        Controlador control
+        Frame frame
+        Motor[6] motores
+        Batería bateria
+        void subir(int metros)
+        void bajar(int metros)
+        void rotar(int grados)
+        void desplazar(Vector2D dirección)
+    }
+    class Motor {
+        int peso
+        float consumo
+        int potencia
+        int velocidad
+    }
+    class Frame {
+        string modelo
+        int peso
+        float diámetro
+    }
+    class Controlador {
+        string modelo
+        string fabricante
+        void encender()
+        void apagar()
+        void acelerar()
+        void desacelerar()
+    }
+    class Bateria {
+        string tipo
+        int celdas
+        int capacidad
+    }
+    class Sensor {
+        string tipo
+        bool activo
+        Medición[] informacion
+        Medición medir(string estado)
+    }
+    class Medicion {
+        string dato
+        string timeStamp
+        string estadoAlMedir
+    }
+    class SistemaTerrestre {
+    }
+    class SistemaDeMonitoreo {
+        SistemaTerrestre tierra
+        SistemaAéreo aire
+    }
+    
+    SistemaAereo --* SistemaMedicion
+    SistemaAereo --* UAV
+    UAV --* "6" Motor
+    UAV --* Frame
+    UAV --* Bateria
+    UAV --* Controlador
+    Controlador -- "*" Motor: Controla
+    Sensor -- "0..*" Medicion: Obtiene
+    SistemaMedición --* "1..*" Sensor
+    SistemaDeMonitoreo --* SistemaAereo
+    SistemaDeMonitoreo --* SistemaTerrestre
+    SistemaTerrestre --* SistemaMedición 
+
+@enduml

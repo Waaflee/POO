@@ -1,0 +1,82 @@
+@startuml
+    skinparam backgroundColor #FAFAFA
+    class Expendedora {
+        Lata[] stock
+        Cospel[] cospelesRestantes
+        int latasRestantes
+        bool estado
+        Orden[] registroOrdenes
+        Orden orden
+        void habilitarBotones(Orden, estado)
+        Orden nuevaOrden(void)
+        bool procesarOrden(void)
+        bool aceptarCospel(Cospel)
+        bool cobrarCospel(void)
+        bool actualizarStock(Bebida)
+        Cospel[] vuelto(void)
+        void restablecerContadores(void)
+        void alertaError()
+    }
+
+    class Orden {
+        Lata[] pedido
+        int costo
+        string timeStamp
+        bool éxito
+        string detalleError
+        Lata solicitarLata(Lata)
+        void imprimirDetalle(Orden[])
+        void imprimirResumen(Orden[])
+    }
+
+    class Lata {
+        Bebida bebida
+        string detalle
+        Lata solicitarLata(Lata)
+    }
+
+    enum TIPO_BEBIDA {
+        AGUA_SABORIZADA
+        CERVEZA
+        ENERGIZANTE
+        GASOESA
+    }
+
+    enum SABOR_BEBIDA {
+        LAGER
+        AMARGA
+        BLANCA
+        ANANÁ
+        MANZANA
+        PERA
+        UVA
+        COLA
+        NARANJA
+    }
+
+
+    class Bebida {
+        TIPO_BEBIDA tipo
+        SABOR_BEBIDA sabor
+        int stock
+        int precio
+        int consultarStock()
+        int consultarPecio()
+        void actualizarStock(int)
+        void actualizarPrecio(int)
+    }
+    note top: El constructor validará de acuerdo \nal tipo de bebida los valores validos de sabor.
+
+    class Cospel {
+        int ranuras
+        bool validarCospel()
+    }
+
+    Bebida ..> SABOR_BEBIDA
+    Bebida ..> TIPO_BEBIDA
+    Lata *-- Bebida: Contiene
+    Orden *-- "1..*" Lata: Emite
+    Expendedora o-left- "*" Orden: Emite 
+    Expendedora -down- "*" Cospel: Acepta >
+    Expendedora *-right- "*" Lata: Vende
+@enduml

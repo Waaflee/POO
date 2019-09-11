@@ -1,0 +1,89 @@
+@startuml
+    skinparam backgroundColor #FAFAFA
+
+    class Expendedora {
+        PantallaLCD pantalla
+        Carcasa carcasa
+        Estructura estructura
+        Tapa tapaFrontal
+        Tapa tapaTrasera
+        ServoMotor motorGalletasA
+        ServoMotor motorGalletasB
+        void expender(Galleta tipo)
+    }
+    enum Galleta {
+        A
+        B
+    }
+    class PantallaLCD {
+        void print(string mensaje)
+    }
+    class Carcasa {
+        string color
+    }
+    class Estructura {
+        string material
+        string color
+        
+    }
+    class Tapa {
+        string material
+        int espesor
+        string recubrimiento
+        string color
+        string logoBase64
+    }
+    class Espiral {
+        int capacidad
+        int diámetro
+        int paso
+        int stock
+        Galleta tipoGalleta
+    }
+    class Alambre {
+        string tipo
+        int diámetro
+    }
+    class ServoMotor {
+        float torque
+        float velocidad
+        Espiral espiral
+        void rotar(bool sentido)
+    }
+    class Servidor {
+        gestionarTransacción(long ID)
+    }
+    class CuentaBancaria {
+        Usuario usuario
+        saldo
+    }
+    class Usuario {
+        long id
+    }
+    class Celular {
+        Usuario usuario
+        pagar(float)
+
+    }
+    class ModuloBluetooth {
+        void enviar(string mensaje)
+        string recibir(void)
+    }
+
+    Expendedora *-- Carcasa
+    Expendedora *-- PantallaLCD
+    Expendedora *-- ModuloBluetooth
+    Expendedora *-- "2" Tapa
+    Expendedora *-- "2" Estructura
+    Expendedora *-- "2" ServoMotor
+    ServoMotor *-- Espiral
+    Espiral *-- Alambre
+    Alambre ..> Galleta
+    Expendedora ..> Galleta
+    ModuloBluetooth -- Celular
+    Celular -- Servidor
+    CuentaBancaria *-- Usuario
+    Servidor o-- CuentaBancaria
+    Celular *-- Usuario
+
+@enduml
