@@ -1,0 +1,8 @@
+# ninja log v5
+1	558	1571235807006585200	main@exe/src_main.cpp.o	f5daf9bb46a8877d
+567	801	1571235807250982700	main	c3abcaa8f59da37b
+6	1386	1571235807836001100	test_all@exe/tests_test-Prompt.cpp.o	b9dcda83fbb060e9
+2	13161	1571235819580623800	test_all@exe/tests_test-main.cpp.o	b91d06094ddf28ec
+13168	14871	1571235821317626300	test_all	26a03e34686bddeb
+6	1628	0	meson-test	3e2f4d9c0df100a8
+1	342	0	meson-test	3e2f4d9c0df100a8

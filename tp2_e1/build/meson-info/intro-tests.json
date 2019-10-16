@@ -1,0 +1,1 @@
+[{"cmd": ["/media/Elements/Documentos/POO/robot_movil/build/test_all"], "env": {}, "name": "All", "workdir": null, "timeout": 30, "suite": ["robot_movil"], "is_parallel": true, "priority": 0}]
