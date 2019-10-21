@@ -1,27 +1,38 @@
-// #include <iostream>
-// #include <cstdlib>
+#include "../include/Generador.hpp"
+#include "../include/Rectangle.hpp"
+#include "../include/Triangle.hpp"
 
-// int main(int argc, char** argv) {
-//     std::cout << "holi" << std::endl;
-//     // if(const char* env_p = std::getenv("COLUMNS"))
-//     //     std::cout << "Your PATH is: " << env_p << '\n';
-//     if(const char* columns = argv[1])
-//         std::cout << "Columns: " << columns << '\n';
-//     if(const char* rows = argv[2])
-//         std::cout << "Rows: " << rows << '\n';
-//     return 0;
-// }
+int main(int argc, char **argv) {
 
-#include <sys/ioctl.h>
-#include <stdio.h>
-#include <unistd.h>
+  // Rectangle rectangle = Rectangle('a', 2, 2, 0, 0);
+  Triangle triangle = Triangle('a', 0, 0, 0, 3, 3, 3);
 
-int main (int argc, char **argv)
-{
-    struct winsize w;
-    ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+  int rows = 4, cols = 4;
+  char **testmap = new char *[rows];
+  for (int i = 0; i < rows; ++i) {
+    testmap[i] = new char[cols];
+    for (int j = 0; j < cols; j++) {
+      testmap[i][j] = 'o';
+    }
+  }
+  // testmap[0][0] = rectangle.getColor();
+  // testmap[0][1] = rectangle.getColor();
+  // testmap[1][0] = rectangle.getColor();
+  // testmap[1][1] = rectangle.getColor();
+  // testmap[2][0] = rectangle.getColor();
+  // testmap[2][1] = rectangle.getColor();
 
-    printf ("lines %d\n", w.ws_row);
-    printf ("columns %d\n", w.ws_col);
-    return 0;  // make sure your main returns int
+  testmap[0][0] = triangle.getColor();
+  // testmap[0][1] = triangle.getColor();
+  // testmap[0][2] = triangle.getColor();
+  testmap[1][0] = triangle.getColor();
+  testmap[1][1] = triangle.getColor();
+  // testmap[1][2] = triangle.getColor();
+  Generador gen = Generador("input", true, cols, rows);
+  gen.printMap();
+  std::cout << "--------------" << std::endl;
+  triangle.draw(gen.getMap(), cols, rows);
+  // rectangle.draw(gen.getMap(), cols, rows);
+  gen.printMap();
+  return 0; // make sure your main returns int
 }

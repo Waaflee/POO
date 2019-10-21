@@ -1,1 +1,0 @@
-[{"cmd": ["/media/Elements/Documentos/POO/tp2_e2/build/test_all"], "env": {}, "name": "All", "workdir": null, "timeout": 30, "suite": ["TP2"], "is_parallel": true, "priority": 0}]
