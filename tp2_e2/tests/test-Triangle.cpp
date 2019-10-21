@@ -12,7 +12,7 @@ TEST_CASE("Triangle perimeter gets returned", "[Triangle]") {
 }
 
 TEST_CASE("Triangle should get drawed only when inside map", "[Triangle]") {
-  Triangle triangle = Triangle('a', 0, 0, 2, 0, 2, 2);
+  Triangle triangle = Triangle('a', 0, 0, 1, 0, 0, 1);
   int rows = 4, cols = 4;
   char **testmap = new char *[rows];
   for (int i = 0; i < rows; ++i) {
@@ -25,7 +25,7 @@ TEST_CASE("Triangle should get drawed only when inside map", "[Triangle]") {
   // testmap[0][1] = triangle.getColor();
   // testmap[0][2] = triangle.getColor();
   testmap[1][0] = triangle.getColor();
-  testmap[1][1] = triangle.getColor();
+  testmap[0][1] = triangle.getColor();
   // testmap[1][2] = triangle.getColor();
 
   Generador gen = Generador("input", true, cols, rows);

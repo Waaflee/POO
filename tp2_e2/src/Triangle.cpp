@@ -1,10 +1,5 @@
 #include "../include/Triangle.hpp"
-#include <algorithm>
-#include <list>
-#include <vector>
 using namespace std;
-
-// void followLine(int ax, int ay, int bx, int by);
 
 Triangle::Triangle(char color, int Ax, int Ay, int Bx, int By, int Cx, int Cy)
     : geometricEntity(color) {
@@ -30,13 +25,6 @@ double Triangle::getPerimeter() {
   return side1 + side2 + side3;
 }
 
-// void followLine(int ax, int ay, int bx, int by) {
-//   for (int i = 0; i < 3; i++) {
-//     for (int j = 0; j < 3; j++) {
-//       /* code */
-//     }
-//   }
-// }
 bool Triangle::isInBetween(int a, int b, int current) {
   if (a < b) {
     if (current >= a && current <= b) {
@@ -53,75 +41,20 @@ bool Triangle::isInBetween(int a, int b, int current) {
 bool Triangle::isOnRect(int ax, int ay, int bx, int by, int currentx,
                         int currenty) {
   if (isInBetween(ax, bx, currentx) && isInBetween(ay, by, currenty)) {
-    // double isOnRect =
-    // ((by - ay) / (bx - ay)) * (currentx - ax) - (currenty - ay);
-    if (ax == 0 && bx == 0) {
-      if (currentx != 0) {
-        return false;
-      }
+    if (ax == bx && currentx == ax) {
+      return true;
     }
-    if (ay == 0 && by == 0) {
-      if (currenty != 0) {
-        return false;
-      }
+    if (ay == by && currenty == ay) {
+      return true;
     }
-    if (ax == bx) {
-      if (currentx != ax) {
-        return false;
-      } else {
-        return true;
-      }
+    int dx = bx - ax;
+    int dy = by - ay;
+    // cout << currenty << ": " << int(round((currentx - ax)) * dy / dx + ay)
+    // << endl;
+    if (currenty == int(round((currentx - ax)) * dy / dx + ay)) {
+      // cout << "Match!!" << endl;
+      return true;
     }
-    if (ay == by) {
-      if (currenty != ay) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-    try {
-      int xside = (currentx - ax) / (bx - ax);
-      int yside = (currenty - ay) / (by - ay);
-      if (abs(xside - yside) == 0) {
-        return true;
-      }
-    } catch (...) {
-      std::cout << "something happened";
-    }
-    // int distance = manhattanDistance(ax, ay, bx, by);
-    // int currentDistance = distance;
-    // std::list<int> distances;
-    // for (int i = 0; i < distance; i++) {
-    //   for (int j = -1; j < 2; j++) {
-    //     for (int k = -1; k < 2; k++) {
-    //       if (j == 0 && k == 0) {
-    //         continue;
-    //       }
-    //       currentDistance =
-    //           manhattanDistance(currentx + j, currenty + k, bx, by);
-    //
-    //       if (currentDistance < distance) {
-    //         distances.push_back(currentDistance);
-    //       }
-    //     }
-    //   }
-    // }
-    // std::list<int>::iterator minDistance =
-    //     std::min_element(distances.begin(), distances.end());
-    // std::cout << "minumun Distance: " << *minDistance << std::endl;
-    // for (int j = -1; j < 2; j++) {
-    //   for (int k = -1; k < 2; k++) {
-    //     if (j == 0 && k == 0) {
-    //       continue;
-    //     }
-    //     currentDistance = manhattanDistance(currentx + j, currenty + k, bx,
-    //     by);
-    //
-    //     if (currentDistance == *minDistance) {
-    //       return true;
-    //     }
-    //   }
-    // }
   }
   return false;
 }
@@ -154,7 +87,7 @@ bool Triangle::draw(char **map, int x, int y) {
     for (int j = 0; j < x; j++) {
       if (isOnRect(Ax, Ay, Bx, By, i, j) || isOnRect(Ax, Ay, Cx, Cy, i, j) ||
           isOnRect(Cx, Cy, Bx, By, i, j)) {
-        map[j][i] = getColor();
+        map[i][j] = getColor();
       }
     }
   }

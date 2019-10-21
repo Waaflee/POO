@@ -32,7 +32,7 @@ bool Generador::compareMap(char **otherMap) {
 }
 
 void Generador::printMap() {
-  for (int i = 0; i < res_y; i++) {
+  for (int i = res_y - 1; i >= 0; i--) {
     for (int j = 0; j < res_x; j++) {
       std::cout << map[i][j];
     }
