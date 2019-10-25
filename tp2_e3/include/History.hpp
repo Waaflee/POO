@@ -1,3 +1,4 @@
+#pragma once
 #include "../lib/XmlRpc.h"
 #include <cmath>
 #include "Operation.hpp"
