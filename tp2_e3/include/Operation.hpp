@@ -6,7 +6,7 @@ private:
   double operando2;
   std::string operador;
 public:
-  std::string toString();
   Operation(double op1, double op2, std::string operand);
   ~Operation();
+  std::string toString();
 };
