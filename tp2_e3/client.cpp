@@ -16,8 +16,9 @@ int main(int argc, char* argv[]) {
 
   XmlRpcValue noArgs, result;
 
-noArgs[0] = "27";
+noArgs[0] = 27;
+noArgs[1] = 8;
   // Call the remote procedure Hello and print the result value
-  if (client.execute("Hellou", noArgs, result))
+  if (client.execute("sum", noArgs, result))
     std::cout << result << std::endl;
 }

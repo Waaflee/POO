@@ -1,21 +1,79 @@
 #include "lib/XmlRpc.h"
+#include <cmath>
 using namespace XmlRpc;
 
 // The server
 XmlRpcServer s;
 
 // The Hello method. No arguments, result is "Hello".
-class Hello : public XmlRpcServerMethod
+class Sum : public XmlRpcServerMethod
 {
 public:
-  Hello(XmlRpcServer* s) : XmlRpcServerMethod("Hellou", s) {}
+  Sum(XmlRpcServer* s) : XmlRpcServerMethod("sum", s) {}
 
   void execute(XmlRpcValue& params, XmlRpcValue& result)
   {
-    result = std::string(params[0]);
+    result = int(params[0]) + int(params[1]);
   }
+} method_sum(&s);    // This constructor registers the method with the server
+class Res : public XmlRpcServerMethod
+{
+public:
+  Res(XmlRpcServer* s) : XmlRpcServerMethod("res", s) {}
 
-} hello(&s);    // This constructor registers the method with the server
+  void execute(XmlRpcValue& params, XmlRpcValue& result)
+  {
+    result = int(params[0]) - int(params[1]);
+  }
+} method_res(&s);    // This constructor registers the method with the server
+class Mul : public XmlRpcServerMethod
+{
+public:
+  Mul(XmlRpcServer* s) : XmlRpcServerMethod("mul", s) {}
+
+  void execute(XmlRpcValue& params, XmlRpcValue& result)
+  {
+    result = int(params[0]) * int(params[1]);
+  }
+} method_mul(&s);    // This constructor registers the method with the server
+
+class Div : public XmlRpcServerMethod
+{
+public:
+  Div(XmlRpcServer* s) : XmlRpcServerMethod("div", s) {}
+
+  void execute(XmlRpcValue& params, XmlRpcValue& result)
+  {
+    try {
+      result = int(params[0]) / int(params[1]);
+    } catch(...) {
+      result = 0;
+    }
+  }
+} method_div(&s);
+   // This constructor registers the method with the server
+class Pow : public XmlRpcServerMethod
+{
+public:
+ Pow(XmlRpcServer* s) : XmlRpcServerMethod("pow", s) {}
+
+  void execute(XmlRpcValue& params, XmlRpcValue& result)
+  {
+      result = std::pow(int(params[0]), int(params[1]));
+  }
+} method_pow(&s);    // This constructor registers the method with the server
+
+class NRoot : public XmlRpcServerMethod
+{
+public:
+ NRoot(XmlRpcServer* s) : XmlRpcServerMethod("nroot", s) {}
+
+  void execute(XmlRpcValue& params, XmlRpcValue& result)
+  {
+      result = std::pow(int(params[0]), 1 / int(params[1]));
+  }
+} method_nroot(&s);    // This constructor registers the method with the server
+
 
 
 // The port to use
