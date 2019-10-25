@@ -5,8 +5,6 @@ using namespace XmlRpc;
 
 // The server
 XmlRpcServer s;
-std::list<std::string>historial;
-
 
 // The port to use
 const int PORT = 8080;
