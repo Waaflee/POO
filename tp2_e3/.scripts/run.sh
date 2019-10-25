@@ -1,9 +1,12 @@
 #!/bin/bash
 touch meson.build
+killall server 
 cd build
 clear
 myString=$(printf "%$(echo $COLUMNS)s");echo ${myString// /#}
 ninja
 echo ""
-./main
+myString=$(printf "%$(echo $COLUMNS)s");echo ${myString// /#}
+./server &
+./client localhost 8080
 myString=$(printf "%$(echo $COLUMNS)s");echo ${myString// /#}

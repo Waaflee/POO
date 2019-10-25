@@ -8,11 +8,11 @@ XmlRpcServer s;
 class Hello : public XmlRpcServerMethod
 {
 public:
-  Hello(XmlRpcServer* s) : XmlRpcServerMethod("Hello", s) {}
+  Hello(XmlRpcServer* s) : XmlRpcServerMethod("Hellou", s) {}
 
   void execute(XmlRpcValue& params, XmlRpcValue& result)
   {
-    result = "El Ramy se la Come";
+    result = params;
   }
 
 } hello(&s);    // This constructor registers the method with the server

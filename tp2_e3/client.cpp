@@ -12,11 +12,12 @@ int main(int argc, char* argv[]) {
   int port = atoi(argv[2]);
 
   // Create a client and connect to the server at hostname:port
-  XmlRpcClient c(hostname, port);
+  XmlRpcClient client(hostname, port);
 
   XmlRpcValue noArgs, result;
 
+noArgs[0] = 27;
   // Call the remote procedure Hello and print the result value
-  if (c.execute("Hello", noArgs, result))
+  if (client.execute("Hellou", noArgs, result))
     std::cout << result << std::endl;
 }
