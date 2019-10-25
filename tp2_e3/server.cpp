@@ -12,7 +12,7 @@ public:
 
   void execute(XmlRpcValue& params, XmlRpcValue& result)
   {
-    result = params;
+    result = std::string(params[0]);
   }
 
 } hello(&s);    // This constructor registers the method with the server
