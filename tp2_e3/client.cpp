@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 
 noArgs[0] = opcion;
   // Call the remote procedure Hello and print the result value
-  if (client.execute("Hellou", noArgs, result))
+  if (client.execute("sum", noArgs, result))
     std::cout << result << std::endl;
   }
 }
