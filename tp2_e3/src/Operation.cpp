@@ -8,5 +8,5 @@ Operation::~Operation(){
 
 }
 std::string Operation::toString(){
-    std::cout << std::string(operando1) << " " << operador << std::string(operando2);
+    return(std::string(operando1)+" "+operador+" "+std::string(operando2));
 }

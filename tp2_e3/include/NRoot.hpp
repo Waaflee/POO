@@ -16,7 +16,7 @@ public:
 
   void execute(XmlRpcValue &params, XmlRpcValue &result) {
     result = std::pow(double(params[0]), 1 / double(params[1]));
-    operationlist->push_back(
+    operationlist->insert(operationlist->end(),
         Operation(double(params[0]), double(params[1]), "^1/"));
   }
 };

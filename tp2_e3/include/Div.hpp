@@ -20,7 +20,7 @@ public:
     } catch (...) {
       result = 0.0;
     }
-    operationlist->push_back(
-        Operation(double(params[0]), double(params[1]), "/"));
+    operationlist->insert(
+      operationlist->end(),Operation(double(params[0]), double(params[1]), "/"));
   }
 };
