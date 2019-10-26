@@ -48,30 +48,15 @@ int main(int argc, char *argv[]) {
 
     noArgs[0] = a1;
     noArgs[1] = a2;
-    if (opcion == 'a') {
-      client.execute("sum", noArgs, result);
+    if(opcion=='a'||opcion=='s'||opcion=='m'||opcion=='d'||opcion=='p'||opcion=='r'||opcion=='h'){
+      if (opcion == 'a') client.execute("sum", noArgs, result);
+      if (opcion == 's') client.execute("res", noArgs, result);
+      if (opcion == 'm') client.execute("mul", noArgs, result);
+      if (opcion == 'd') client.execute("div", noArgs, result);
+      if (opcion == 'p') client.execute("pow", noArgs, result);
+      if (opcion == 'r') client.execute("nroot", noArgs, result);
+      //if(opcion=='h') client.execute("history", noArgs, result);  
       std::cout << result << std::endl << std::endl;
     }
-    if (opcion == 's') {
-      client.execute("res", noArgs, result);
-      std::cout << result << std::endl << std::endl;
-    }
-    if (opcion == 'm') {
-      client.execute("mul", noArgs, result);
-      std::cout << result << std::endl << std::endl;
-    }
-    if (opcion == 'd') {
-      client.execute("div", noArgs, result);
-      std::cout << result << std::endl << std::endl;
-    }
-    if (opcion == 'p') {
-      client.execute("pow", noArgs, result);
-      std::cout << result << std::endl << std::endl;
-    }
-    if (opcion == 'r') {
-      client.execute("nroot", noArgs, result);
-      std::cout << result << std::endl << std::endl;
-    }
-    // if(opcion=='h') client.execute("history", noArgs, result);
   }
 }
