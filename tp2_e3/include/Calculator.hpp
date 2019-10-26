@@ -1,3 +1,4 @@
+#pragma once
 #include "Div.hpp"
 #include "Mul.hpp"
 #include "NRoot.hpp"

@@ -1,14 +1,22 @@
+#pragma once
 #include "../lib/XmlRpc.h"
+#include "Operation.hpp"
 #include <cmath>
 using namespace XmlRpc;
 
-class Sum : public XmlRpcServerMethod
-{
-public:
-  Sum(XmlRpcServer* s) : XmlRpcServerMethod("sum", s) {}
+class Sum : public XmlRpcServerMethod {
+private:
+  std::list<Operation> *operationlist;
 
-  void execute(XmlRpcValue& params, XmlRpcValue& result)
-  {
+public:
+  Sum(XmlRpcServer *s, std::list<Operation> &operationlist)
+      : XmlRpcServerMethod("sum", s) {
+    this->operationlist = &operationlist;
+  }
+
+  void execute(XmlRpcValue &params, XmlRpcValue &result) {
     result = double(params[0]) + double(params[1]);
+    operationlist->push_back(
+        Operation(double(params[0]), double(params[1]), "+"));
   }
 };

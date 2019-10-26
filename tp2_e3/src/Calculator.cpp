@@ -1,12 +1,12 @@
 #include "../include/Calculator.hpp"
 
 Calculator::Calculator(XmlRpcServer *s) {
-  div = new Div(s);
-  mul = new Mul(s);
-  nroot = new NRoot(s);
-  pow = new Pow(s);
-  res = new Res(s);
-  sum = new Sum(s);
+  div = new Div(s, historial);
+  mul = new Mul(s, historial);
+  nroot = new NRoot(s, historial);
+  pow = new Pow(s, historial);
+  res = new Res(s, historial);
+  sum = new Sum(s, historial);
 }
 Calculator::~Calculator() {
   delete div;
