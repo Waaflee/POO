@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
               << "*****************************************" << std::endl;
     std::cout << "Opcion: ";
     std::cin >> opcion;
-    if (opcion != 't') {
+    if (opcion != 't' || opcion != 'h') {
       std::cout << "Argumento1: ";
       std::cin >> a1;
       std::cout << "Argumento2: ";
@@ -72,6 +72,6 @@ int main(int argc, char *argv[]) {
       client.execute("nroot", noArgs, result);
       std::cout << result << std::endl << std::endl;
     }
-    // if(opcion=='h') client.execute("sum", noArgs, result);
+    // if(opcion=='h') client.execute("history", noArgs, result);
   }
 }
