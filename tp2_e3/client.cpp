@@ -5,7 +5,7 @@ using namespace XmlRpc;
 
 int main(int argc, char* argv[]) {
     std::string opcion = " ";
-    float a1,a2;
+    double a1,a2;
     while(true){
     char opcion;
     std::cout << "=========================================" << std::endl << "CALCULADORA DISTRIBUIDA CON RPC" << std::endl << "=========================================" << std::endl;
