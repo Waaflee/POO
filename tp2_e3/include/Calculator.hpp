@@ -1,11 +1,12 @@
 #pragma once
 #include "Div.hpp"
+#include "History.hpp"
 #include "Mul.hpp"
 #include "NRoot.hpp"
+#include "Operation.hpp"
 #include "Pow.hpp"
 #include "Res.hpp"
 #include "Sum.hpp"
-#include "Operation.hpp"
 
 #include "../lib/XmlRpc.h"
 #include <cmath>
@@ -19,8 +20,10 @@ private:
   Pow *pow;
   Res *res;
   Sum *sum;
-  std::list<Operation>historial;
+  History *log;
+  std::list<Operation> historial;
+
 public:
-  Calculator(XmlRpcServer* s);
+  Calculator(XmlRpcServer *s);
   ~Calculator();
 };

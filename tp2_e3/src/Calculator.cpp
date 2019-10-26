@@ -7,6 +7,7 @@ Calculator::Calculator(XmlRpcServer *s) {
   pow = new Pow(s, historial);
   res = new Res(s, historial);
   sum = new Sum(s, historial);
+  log = new History(s, historial);
 }
 Calculator::~Calculator() {
   delete div;
