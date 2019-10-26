@@ -19,8 +19,7 @@ public:
     std::string buffer = "Historial de Operaciones:\n";
     for (auto const &i : *operationlist) {
       buffer += i.toString() + "\n";
-      std::cout << i.toString() + "\n";
     }
-    result = operationlist;
+    result = buffer;
   }
 };

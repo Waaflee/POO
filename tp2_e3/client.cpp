@@ -4,14 +4,15 @@
 using namespace XmlRpc;
 
 int main(int argc, char *argv[]) {
+
   if (argc != 3) {
     std::cerr << "Usage: HelloClient serverHost serverPort\n";
     return -1;
   }
   const char *hostname = argv[1];
   int port = atoi(argv[2]);
-  std::string opcion = " ";
-  float a1, a2;
+
+  double a1, a2;
   while (true) {
     char opcion;
     std::cout << "=========================================" << std::endl
@@ -28,7 +29,7 @@ int main(int argc, char *argv[]) {
               << "*****************************************" << std::endl;
     std::cout << "Opcion: ";
     std::cin >> opcion;
-    std::string rpcFunctionName;
+
     switch (opcion) {
     case 't':
       return 0;
@@ -49,20 +50,18 @@ int main(int argc, char *argv[]) {
     default:
       std::cout << "No se seleccionó ninguna operación válida." << std::endl;
     }
-    // if (opcion != 't' || opcion != 'h') {
-    // } else
-    //   break;
     if (opcion == 'd' && a2 == 0) {
       std::cout << "---No se puede dividir por cero---" << std::endl;
       continue;
     }
+
     // Create a client and connect to the server at hostname:port
     XmlRpcClient client(hostname, port);
-
     XmlRpcValue noArgs, emptyArgs, result;
 
     noArgs[0] = a1;
     noArgs[1] = a2;
+
     if (opcion == 'a' || opcion == 's' || opcion == 'm' || opcion == 'd' ||
         opcion == 'p' || opcion == 'r' || opcion == 'h') {
       if (opcion == 'a')
@@ -79,7 +78,7 @@ int main(int argc, char *argv[]) {
         client.execute("nroot", noArgs, result);
       if (opcion == 'h')
         client.execute("history", emptyArgs, result);
-      std::cout << result << std::endl << std::endl;
+      std::cout << std::endl << result << std::endl << std::endl;
     }
   }
 }
