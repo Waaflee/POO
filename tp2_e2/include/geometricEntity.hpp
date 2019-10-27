@@ -4,15 +4,19 @@
 #include <string>
 
 class geometricEntity {
-private:
+protected:
   char color;
 
 public:
   geometricEntity(char color) { this->color = color; };
   virtual ~geometricEntity(){};
+  // ~geometricEntity(){};
   virtual double getArea() = 0;
+  // double getArea() { return 0.0; };
   virtual double getPerimeter() = 0;
+  // double getPerimeter() { return 0.0; };
   virtual bool draw(char **map, int x, int y) = 0;
+  // bool draw(char **map, int x, int y) { return false; };
 
   double euclideanDistance(int Ax, int Ay, int Bx, int By) {
     using namespace std;

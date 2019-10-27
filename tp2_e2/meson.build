@@ -1,21 +1,14 @@
 project('TP2', 'cpp')
 
-srclist = [
-'src/Triangle.cpp',
-'src/Rectangle.cpp',
-'src/Circle.cpp',
-'src/Generador.cpp'
-]
-incdir = include_directories(['include', 'lib'])
-executable('main',sources: ['src/main.cpp'] + srclist, include_directories : incdir)
+s = run_command('.getsrc.sh', ['src'])
+t = run_command('.getsrc.sh', ['tests'])
+# l = run_command('.getsrc.sh', ['lib'])
 
-testslist = [
-  'tests/test-main.cpp',
-  'tests/test-Triangle.cpp',
-  'tests/test-Rectangle.cpp',
-  'tests/test-Circle.cpp',
-  'tests/test-geometricEntity.cpp',
-  'tests/test-Generador.cpp'
-  ]
-t = executable('test_all', sources: srclist + testslist, include_directories: [incdir, 'tests'])
-test('Full Tests', t)
+srclist = s.stdout().strip().split('\n')
+testlist = t.stdout().strip().split('\n')
+# liblist = l.stdout().strip().split('\n')
+
+incdir = include_directories(['include', 'lib'])
+srv = executable('main', sources: ['main.cpp'] + srclist, include_directories : incdir)
+tests = executable('test_all', sources: srclist + testlist, include_directories: [incdir, 'tests'])
+test('Full Tests', tests)

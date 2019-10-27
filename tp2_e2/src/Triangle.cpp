@@ -59,37 +59,42 @@ bool Triangle::isOnRect(int ax, int ay, int bx, int by, int currentx,
   return false;
 }
 
-bool Triangle::draw(char **map, int x, int y) {
+bool Triangle::draw(char **map, int y, int x) {
   try {
-    if (Ax > x) {
+    if (Ax >= x) {
       throw string("Exceeded size Ax");
     };
-    if (Ay > y) {
+    if (Ay >= y) {
       throw string("Exceeded size Ay");
     };
-    if (Bx > x) {
+    if (Bx >= x) {
       throw string("Exceeded size Bx");
     };
-    if (By > y) {
+    if (By >= y) {
       throw string("Exceeded size By");
     };
-    if (Cx > x) {
+    if (Cx >= x) {
       throw string("Exceeded size Cx");
     };
-    if (Cy > y) {
+    if (Cy >= y) {
       throw string("Exceeded size Cy");
     };
   } catch (string e) {
-    cout << e << endl;
+    // cout << e << endl;
     return false;
   }
-  for (int i = 0; i < x; i++) {
-    for (int j = 0; j < x; j++) {
-      if (isOnRect(Ax, Ay, Bx, By, i, j) || isOnRect(Ax, Ay, Cx, Cy, i, j) ||
-          isOnRect(Cx, Cy, Bx, By, i, j)) {
-        map[i][j] = getColor();
+  try {
+    for (int i = 0; i < x; i++) {
+      for (int j = 0; j < y; j++) {
+        if (isOnRect(Ax, Ay, Bx, By, i, j) || isOnRect(Ax, Ay, Cx, Cy, i, j) ||
+            isOnRect(Cx, Cy, Bx, By, i, j)) {
+          map[i][j] = getColor();
+        }
       }
     }
+  } catch (...) {
+    cout << "Something happened...[Triangle] " << Ax << Ay << Bx << By << Cx
+         << Cy << endl;
   }
 
   return true;

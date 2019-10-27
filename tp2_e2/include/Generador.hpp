@@ -1,4 +1,5 @@
 #pragma once
+#include "FileParser.hpp"
 #include <iomanip>
 #include <iostream>
 #include <list>
@@ -7,19 +8,26 @@
 using namespace std;
 
 class Generador {
+  vector<string> report;
+  // FileParser *parser;
   string fileName;
   bool differentColors;
   char **map;
   int res_x;
   int res_y;
-  char mapFill;
+  string mapFill;
+  bool mapCreated;
 
 public:
-  Generador(string file, bool diffColors, int rx, int ry, char fill = 'o');
+  Generador(string file, bool diffColors);
+  Generador(string file, bool diffColors, int x, int y);
   ~Generador();
   char **getMap() { return map; };
   void generateMap();
-  list<string> analyzeFile();
+  void analyzeFile();
   void printMap();
   bool compareMap(char **otherMap);
+  vector<string> getReport() { return report; }
+  int getRX() { return res_x; };
+  int getRY() { return res_y; };
 };

@@ -29,17 +29,23 @@ bool Rectangle::draw(char **map, int x, int y) {
   if (width == 0 || height == 0) {
     return true;
   }
-  for (int i = 0; i < x; i++) {
-    for (int j = 0; j < y; j++) {
-      if ((i >= Ax && (i - Ax) < width - 1) &&
-          (j == Ay || j == (Ay + height - 1))) {
-        map[j][i] = getColor();
-      }
-      if ((i == Ax || i == Ax + width - 1) &&
-          (j >= Ay && j <= Ay + height - 1)) {
-        map[j][i] = getColor();
+  try {
+
+    for (int i = 0; i < x; i++) {
+      for (int j = 0; j < y; j++) {
+        if ((i >= Ax && (i - Ax) < width - 1) &&
+            (j == Ay || j == (Ay + height - 1))) {
+          map[j][i] = getColor();
+        }
+        if ((i == Ax || i == Ax + width - 1) &&
+            (j >= Ay && j <= Ay + height - 1)) {
+          map[j][i] = getColor();
+        }
       }
     }
+  } catch (...) {
+    cout << "Something happened...[Rectangle] " << Ax << Ay << width << height
+         << endl;
   }
   return true;
 }
