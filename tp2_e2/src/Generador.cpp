@@ -50,6 +50,17 @@ void Generador::printMap() {
     std::cout << std::endl;
   }
 }
+void Generador::printMap(string mapfile) {
+  ofstream report;
+  report.open(mapfile);
+  for (int i = res_y - 1; i >= 0; i--) {
+    for (int j = 0; j < res_x; j++) {
+      report << map[i][j];
+    }
+    report << std::endl;
+  }
+  report.close();
+}
 void Generador::analyzeFile() {
   FileParser parser(fileName);
   for (auto const &i : parser.lines) {

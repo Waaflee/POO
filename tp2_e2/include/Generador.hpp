@@ -26,6 +26,7 @@ public:
   void generateMap();
   void analyzeFile();
   void printMap();
+  void printMap(string mapfile);
   bool compareMap(char **otherMap);
   vector<string> getReport() { return report; }
   int getRX() { return res_x; };
