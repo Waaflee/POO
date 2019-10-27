@@ -2,7 +2,11 @@
 #include "include/Generador.hpp"
 
 int main(int argc, char **argv) {
-  Generador gen = Generador("../input", false);
+  string inputFile;
+  cout << "Ingrese nombre del archivo de entrada" << endl;
+  cin >> inputFile;
+  cout << endl;
+  Generador gen = Generador(inputFile, false);
   // gen.analyzeFile();
   gen.printMap();
   gen.printMap("../map");
