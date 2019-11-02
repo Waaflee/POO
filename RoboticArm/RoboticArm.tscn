@@ -1,37 +1,84 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://RoboticArm.gd" type="Script" id=1]
 
 [sub_resource type="CubeMesh" id=1]
+size = Vector3( 2, 2, 6 )
 
-[sub_resource type="PlaneMesh" id=2]
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 2, 2, 6 )
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 2, 2, 6 )
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 0.5, 2, 3 )
+
+[sub_resource type="CubeMesh" id=5]
+size = Vector3( 0.5, 2, 3 )
+
+[sub_resource type="PlaneMesh" id=6]
 
 [node name="RoboticArm" type="Spatial"]
 script = ExtResource( 1 )
 
-[node name="Prisma1" type="MeshInstance" parent="."]
-transform = Transform( -3.58159e-08, -0.573261, 2.45812, -2.50581e-08, 0.819372, 1.71978, -1, 0, -1.31134e-07, 0, 5, 3 )
+[node name="Prisma1" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+
+[node name="Prisma1_mesh" type="MeshInstance" parent="Prisma1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.2 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="Prisma2" type="MeshInstance" parent="Prisma1"]
-transform = Transform( 0.557393, 0.47595, -2.04085, -0.47595, 0.854547, 0.623697, 0.226761, 0.0692997, 0.702846, 0, 4.76837e-07, 2.1 )
-mesh = SubResource( 1 )
-material/0 = null
+[node name="Prisma2" type="Spatial" parent="Prisma1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.4 )
 
-[node name="Prisma3" type="MeshInstance" parent="Prisma1/Prisma2"]
-transform = Transform( 0.61742, -0.461979, -1.91005, 0.756461, 0.570711, 0.958391, 0.0719258, -0.22629, 0.701837, 0, 1.19209e-07, 2.2 )
-mesh = SubResource( 1 )
-material/0 = null
-
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( -1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 0, 20, -35 )
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0 )
+[node name="Prisma2_mesh" type="MeshInstance" parent="Prisma1/Prisma2"]
+transform = Transform( 1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, 0, 0, 3.2 )
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="SpotLight" type="SpotLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.623378, 0.78192, 0, -0.78192, 0.623378, 11.6665, 16.9046, 24.5813 )
-light_color = Color( 0.8, 0.054902, 0.352941, 1 )
+[node name="Prisma3" type="Spatial" parent="Prisma1/Prisma2"]
+transform = Transform( 1, 0, -3.55271e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 6.4 )
+
+[node name="Prisma3_mesh" type="MeshInstance" parent="Prisma1/Prisma2/Prisma3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.2 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="Pinza1" type="Spatial" parent="Prisma1/Prisma2/Prisma3"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 6.5 )
+
+[node name="Pinza1_mesh" type="MeshInstance" parent="Prisma1/Prisma2/Prisma3/Pinza1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.7 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="Pinza2" type="Spatial" parent="Prisma1/Prisma2/Prisma3"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 6.5 )
+
+[node name="Pinza2_mesh" type="MeshInstance" parent="Prisma1/Prisma2/Prisma3/Pinza2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.7 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -30, 15, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 25, 0, 0, 0, 1, 0, 0, 0, 25, 0, 0, 0 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 10, 0 )
+light_color = Color( 1, 0.776471, 0.513726, 1 )
+shadow_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
