@@ -5,26 +5,27 @@ onready var prisma_2 := get_node("Prisma1").get_node("Prisma2")
 onready var prisma_3 := get_node("Prisma1").get_node("Prisma2").get_node("Prisma3")
 onready var tween := get_node("Tween")
 var pinza_abierta = false
-var grados_1 := 0
-var grados_2 := 0
-var grados_3 := 0
+var GRADOS := [0, 0, 0]
+var selected = 1
 
 func _ready():
 	pass
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
-		toggle_pinza()
+		selected += 1
+		if selected > 3:
+			selected = 1
+		print(selected)
 	if Input.is_action_just_pressed("ui_up"):
-		grados_1 += 5
-		grados_1 = clamp(grados_1, -90, 90)
-		rotar_articulacion(1, grados_1, 90)
-		print(grados_1)
+		GRADOS[selected - 1] += 10
+		GRADOS[selected - 1] = clamp(GRADOS[selected - 1], -90, 90)
+		rotar_articulacion(selected, GRADOS[selected - 1], 90)
+		print(GRADOS[selected - 1])
 	if Input.is_action_just_pressed("ui_down"):
-		grados_1 -= 5
-		rotar_articulacion(1, grados_1, 90)
-		print(grados_1)
-#	pass
+		GRADOS[selected - 1] -= 10
+		rotar_articulacion(selected, GRADOS[selected - 1], 90)
+		print(GRADOS[selected - 1])
 
 func abrir_pinza():
 	pinza_abierta = true
@@ -58,8 +59,3 @@ func rotar_articulacion(articulacion: int, grados: float, speed: float = 45):
 		
 func _on_Timer_timeout():
 	toggle_pinza()
-#	rotar_articulacion(1, 150, 90)
-#	rotar_articulacion(3, 150, 90)
-#	rotar_articulacion(2, 150, 90)
-#	rotar_articulacion(3, count*1.5, 90)
-	
